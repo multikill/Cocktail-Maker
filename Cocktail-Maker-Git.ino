@@ -31,6 +31,10 @@
 //                         - Offset für Y-Achse eingestellt
 //                         - Cocktailzaehler 2 Byte im EEPROM somit 4000 Cocktails moeglich
 //                         - Luefter PWM eingestellt
+//  03.12.2018             - Adding Silent Driver Motor
+//                         - Geschwindigkeit, Offset angepasst
+//                         - InfrarotSensor XY_Position eingefuegt
+//
 //
 //
 ////////////////////////////////////////////////////////////////////////////////////
@@ -201,8 +205,9 @@ extern uint8_t SmallFont[];             // Schriftart fuer Starrtbildschirm
 //#define   SERVO_AR          160         // SERVO Motor Anschlag Rechts
 //#define   SERVO_MITTE       230         // SERVO Motor Mitte (Grundstellung)
 
-#define   MOTOR_Y_START     0           // Position Glas Start
-#define   MOTOR_Y_VORNE     -400          // Position Glas Vorne // + Offset nach Links // - Offset nach Rechts
+#define   MOTOR_Y_START     0              // Position Start
+#define   MOTOR_Y_INFRA     1600           // Position Glas Erkennung
+#define   MOTOR_Y_VORNE     400            // Position Glas Vorne // + Offset nach Links // - Offset nach Rechts
 #define   MOTOR_Y_HINTEN    -12000         // Position Glas Hinten
 
 ////////////////////////////////////////////////////////////////////////////////////

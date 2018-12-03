@@ -35,11 +35,11 @@ void Zubereiten() {
     {
       Referenzfahrt();
     }
+    
     if (!GlasVorhanden()) {
       FehlerBeimProduzieren = true;
       return;
     }
-
 
     MotorenEinSchalten(1);
     ServoEinSchalten(1);
@@ -151,7 +151,7 @@ void MotorInitalisieren() {
   }
 
   stepperX.setAcceleration(100);                        // Maximale Beschleunigung fuer X und Y
-  stepperY.setAcceleration(100);
+  stepperY.setAcceleration(10);
   // speed 100 acc 5
 
   Serial.println("  - Motor X Speed: " + String(stepperX.maxSpeed()));

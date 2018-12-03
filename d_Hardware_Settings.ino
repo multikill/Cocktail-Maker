@@ -61,6 +61,12 @@ void Koordinaten(int Flasche) {
     else if ((stepperY.currentPosition() == MOTOR_Y_START) && (randNumber == 1)) {
       positions[1] = MOTOR_Y_VORNE - Flaschenposition_Y(Flasche);
     }
+    else if ((stepperY.currentPosition() == MOTOR_Y_INFRA) && (randNumber == 0)) {
+      positions[1] = MOTOR_Y_VORNE + Flaschenposition_Y(Flasche);
+    }
+    else if ((stepperY.currentPosition() == MOTOR_Y_INFRA) && (randNumber == 1)) {
+      positions[1] = MOTOR_Y_VORNE - Flaschenposition_Y(Flasche);
+    }
   }
   else {
     positions[1] = Flaschenposition_Y(Flasche);
@@ -69,32 +75,41 @@ void Koordinaten(int Flasche) {
 }
 
 long Flaschenposition_X(int xy_pos) {
+  
+  long first   = 16000;
+  long versatz = 24000;
+  
   if (xy_pos == 0 || xy_pos == 5)             // Pos 0 &  5
   {
-    return 12800;
+    return 0*versatz+first;
   }
 
   else if (xy_pos == 1 || xy_pos == 6)        // Pos 1 &  6
   {
-    return 36800;
+    return 1*versatz+first;
   }
 
   else if (xy_pos == 2 || xy_pos == 7)        // Pos 2 &  7
   {
-    return 60800;
+    return 2*versatz+first;
   }
 
   else if (xy_pos == 3 || xy_pos == 8)        // Pos 3 &  8
   {
-    return 84800;
+    return 3*versatz+first;
   }
 
   else if (xy_pos == 4 || xy_pos == 9)        // Pos 4 &  9
   {
-    return 108800;
+    return 4*versatz+first;
   }
 
   else if (xy_pos == 20)                     // Grundstellung
+  {
+    return 0;
+  }
+
+  else if(xy_pos == 21)
   {
     return 0;
   }
@@ -124,6 +139,11 @@ long Flaschenposition_Y(int xy_pos) {
     return MOTOR_Y_START;
   }
 
+  else if(xy_pos == 21)
+  {
+    return MOTOR_Y_INFRA;
+  }
+  
   else
   {
     return MOTOR_Y_START;
@@ -176,6 +196,10 @@ void setLED(int R, int B, int G) {
 
 bool GlasVorhanden() {
 
+  MotorenEinSchalten(1);
+  Koordinaten(21);    // Glas Versatz Position
+  BewegDich();
+
   for (int i = 0; i <= 20; i++)
   {
     if (analogRead (PIN_GLAS) < ANALOG_LOW)
@@ -188,6 +212,10 @@ bool GlasVorhanden() {
     Serial.println("Glas NICHT vorhanden");
     delay(100);
   }
+
+  Koordinaten(20);  // Home Position
+  BewegDich();
+  MotorenEinSchalten(0);
 
   return false;
 }
