@@ -131,25 +131,27 @@ void BewegDich() {
 void MotorInitalisieren() {
   float MotorX_Speed = (float) (EEPROM.read(E_ADDR_MOTOR_X));;
   float MotorY_Speed = (float) (EEPROM.read(E_ADDR_MOTOR_Y));;
-  MotorX_Speed *= 4;
-  MotorY_Speed *= 4;
+  //MotorX_Speed *= 4;
+  //MotorY_Speed *= 4;
+  MotorX_Speed *= 4*16*2;
+  MotorY_Speed *= 4*16;
 
-  if ((MotorX_Speed >= 0) && (MotorX_Speed <= 1000)) {  // Setzte Motor X Speed
+  if ((MotorX_Speed >= 0) && (MotorX_Speed <= 32000)) {  // Setzte Motor X Speed
     stepperX.setMaxSpeed(MotorX_Speed);                 // Geschwindigkeit aus EEPROM
   }
   else {
-    stepperX.setMaxSpeed(400);                          // Standard Geschwindikgkeit
+    stepperX.setMaxSpeed(2000);                          // Standard Geschwindikgkeit
   }
 
-  if ((MotorY_Speed >= 0) && (MotorY_Speed <= 1000)) {  // Setzte Motor Y Speed
+  if ((MotorY_Speed >= 0) && (MotorY_Speed <= 16000)) {  // Setzte Motor Y Speed
     stepperY.setMaxSpeed(MotorY_Speed);                 // Geschwindigkeit aus EEPROM
   }
   else {
-    stepperY.setMaxSpeed(50);                          // Standard Gewschindigkeit
+    stepperY.setMaxSpeed(2000);                          // Standard Gewschindigkeit
   }
 
-  stepperX.setAcceleration(10);                        // Maximale Beschleunigung fuer X und Y
-  stepperY.setAcceleration(10);
+  stepperX.setAcceleration(100);                        // Maximale Beschleunigung fuer X und Y
+  stepperY.setAcceleration(100);
   // speed 100 acc 5
 
   Serial.println("  - Motor X Speed: " + String(stepperX.maxSpeed()));
@@ -184,12 +186,12 @@ void Referenzfahrt() {
   MotorenEinSchalten(1);
 
   //*** Referenzfahr X_Achse Kleines Stück nach rechts fahren*//
-  stepperX.setMaxSpeed(-200);
-  stepperX.setSpeed(200);                  // Rechts fahren
+  stepperX.setMaxSpeed(2000);
+  stepperX.setSpeed(2000);                  // Rechts fahren
   //stepperX.runSpeed();
   //delay(2000);
 
-  for (int i = 0; i <= 1000; i++)
+  for (int i = 0; i <= 4000; i++)
   {
     stepperX.runSpeed();
     delay(1);
@@ -197,8 +199,8 @@ void Referenzfahrt() {
   stepperX.stop();
 
   //*** Referenzfahr X_Achse ***//
-  stepperX.setMaxSpeed(-200);              // Links fahren mit "-xx"
-  stepperX.setSpeed(-200);                 // Beide sind notwendig!
+  stepperX.setMaxSpeed(-2000);              // Links fahren mit "-xx"
+  stepperX.setSpeed(2000);                 // Beide sind notwendig!
 
   while (!(analogRead (PIN_X_ACHSE) > ANALOG_HIGH))
   {
@@ -215,8 +217,8 @@ void Referenzfahrt() {
   Serial.print("  - Referenzfahrt Y laeuft: ");
 
   //*** Referenzfahr Y_Achse ***//
-  stepperY.setMaxSpeed(400);              // Links fahren mit "-xx"
-  stepperY.setSpeed(-400);                 // Beide sind notwendig!
+  stepperY.setMaxSpeed(2000);              // Links fahren mit "-xx"
+  stepperY.setSpeed(-2000);                 // Beide sind notwendig!
 
   while (!(analogRead (PIN_Y_ACHSE) > ANALOG_HIGH))
   {

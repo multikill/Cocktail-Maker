@@ -193,17 +193,17 @@ extern uint8_t SmallFont[];             // Schriftart fuer Starrtbildschirm
 #define   E_ADDR_MOTOR_Y    4           // EEPROM Addresse fuer Motor X Max Speed
 #define   E_ADDR_ZAEHLER    10          // EEPROM Addresse fuer Cocktail Zaehler
 
-//#define   SERVO_AL          340         // SERVO Motor Anschlag Links (von 0 bis 4096)
-//#define   SERVO_AR          200         // SERVO Motor Anschlag Rechts
-//#define   SERVO_MITTE       270         // SERVO Motor Mitte (Grundstellung)
+#define   SERVO_AL          340         // SERVO Motor Anschlag Links (von 0 bis 4096)
+#define   SERVO_AR          200         // SERVO Motor Anschlag Rechts
+#define   SERVO_MITTE       270         // SERVO Motor Mitte (Grundstellung)
 
-#define   SERVO_AL          300         // SERVO Motor Anschlag Links (von 0 bis 4096)
-#define   SERVO_AR          160         // SERVO Motor Anschlag Rechts
-#define   SERVO_MITTE       230         // SERVO Motor Mitte (Grundstellung)
+//#define   SERVO_AL          300         // SERVO Motor Anschlag Links (von 0 bis 4096)
+//#define   SERVO_AR          160         // SERVO Motor Anschlag Rechts
+//#define   SERVO_MITTE       230         // SERVO Motor Mitte (Grundstellung)
 
 #define   MOTOR_Y_START     0           // Position Glas Start
-#define   MOTOR_Y_VORNE     10          // Position Glas Vorne // + Offset nach Links // - Offset nach Rechts
-#define   MOTOR_Y_HINTEN    500         // Position Glas Hinten
+#define   MOTOR_Y_VORNE     -400          // Position Glas Vorne // + Offset nach Links // - Offset nach Rechts
+#define   MOTOR_Y_HINTEN    -12000         // Position Glas Hinten
 
 ////////////////////////////////////////////////////////////////////////////////////
 /// Display  Ansteuerung  INITALISIEREN                                         ////

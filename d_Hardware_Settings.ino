@@ -68,30 +68,30 @@ void Koordinaten(int Flasche) {
 
 }
 
-int Flaschenposition_X(int xy_pos) {
+long Flaschenposition_X(int xy_pos) {
   if (xy_pos == 0 || xy_pos == 5)             // Pos 0 &  5
   {
-    return -800;
+    return 12800;
   }
 
   else if (xy_pos == 1 || xy_pos == 6)        // Pos 1 &  6
   {
-    return -2300;
+    return 36800;
   }
 
   else if (xy_pos == 2 || xy_pos == 7)        // Pos 2 &  7
   {
-    return -3800;
+    return 60800;
   }
 
   else if (xy_pos == 3 || xy_pos == 8)        // Pos 3 &  8
   {
-    return -5300;
+    return 84800;
   }
 
   else if (xy_pos == 4 || xy_pos == 9)        // Pos 4 &  9
   {
-    return -6800;
+    return 108800;
   }
 
   else if (xy_pos == 20)                     // Grundstellung
@@ -107,7 +107,7 @@ int Flaschenposition_X(int xy_pos) {
 
 }
 
-int Flaschenposition_Y(int xy_pos) {
+long Flaschenposition_Y(int xy_pos) {
 
   if (xy_pos == 0 || xy_pos == 1 || xy_pos == 2 || xy_pos == 3 || xy_pos == 4 )       // Pos 0..4   Vorne
   {
